@@ -1,7 +1,11 @@
 const baseCount = 15;
+const allBases = ['A', 'T', 'C', 'G']
 
 // Returns a random DNA base
-const returnRandBase = (dnaBases = ['A', 'T', 'C', 'G']) => {
+const returnRandBase = (dnaBases) => {
+  if(!dnaBases) {
+    dnaBases = allBases;
+  }
   return dnaBases[Math.floor(Math.random() * dnaBases.length)];
 };
 
