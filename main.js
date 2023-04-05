@@ -46,6 +46,14 @@ function pAequorFactory(specimenNum, dna) {
       const pct = Math.trunc(100 * count / baseCount);
       console.log(`Specimen #${this.specimenNum} and specimen #${other.specimenNum} have ${pct}% DNA in common.`);
     },
+    willLikelySurvive() {
+      // return true if dna contains >= 60% 'C' or 'G' bases
+      const count = this.dna.filter(base => base === 'C' || base === 'G').length;
+      const frac = count / baseCount;
+      console.log(this.dna);
+      console.log(frac);
+      return frac >= 0.6;
+    },
   };
 }
 
@@ -63,3 +71,5 @@ pA2.dna = pA2.mutate();
 pA2.dna = pA2.mutate();
 pA2.dna = pA2.mutate();
 pA1.compareDNA(pA2);
+console.log(`T/F? Specimen ${pA1.specimenNum} is likely to survive? ${ pA1.willLikelySurvive() }`);
+console.log(`T/F? Specimen ${pA2.specimenNum} is likely to survive? ${ pA2.willLikelySurvive() }`);
