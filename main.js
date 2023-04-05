@@ -57,19 +57,32 @@ function pAequorFactory(specimenNum, dna) {
   };
 }
 
-console.log(returnRandBase());
-console.log(mockUpStrand());
-let pA1 = pAequorFactory(1, mockUpStrand());
-console.log(pA1);
-console.log(pA1.mutate());
-pA1.compareDNA(pA1);
-let pA2 = pAequorFactory(2, mockUpStrand());
-pA1.compareDNA(pA2);
-pA2.compareDNA(pA1);
-pA2.dna = pA2.mutate();
-pA2.dna = pA2.mutate();
-pA2.dna = pA2.mutate();
-pA2.dna = pA2.mutate();
-pA1.compareDNA(pA2);
-console.log(`T/F? Specimen ${pA1.specimenNum} is likely to survive? ${ pA1.willLikelySurvive() }`);
-console.log(`T/F? Specimen ${pA2.specimenNum} is likely to survive? ${ pA2.willLikelySurvive() }`);
+// Create 30 instances of pAequor for which willLikelySurvive is true
+const specimensForStudy = [];
+let nextSpecimen;
+while(specimensForStudy.length < 30) {
+  nextSpecimen = pAequorFactory(specimensForStudy.length + 1, mockUpStrand());
+  if(!nextSpecimen.willLikelySurvive()) {
+    continue;
+  }
+  specimensForStudy.push(nextSpecimen);
+}
+console.log(specimensForStudy);
+
+
+// console.log(returnRandBase());
+// console.log(mockUpStrand());
+// let pA1 = pAequorFactory(1, mockUpStrand());
+// console.log(pA1);
+// console.log(pA1.mutate());
+// pA1.compareDNA(pA1);
+// let pA2 = pAequorFactory(2, mockUpStrand());
+// pA1.compareDNA(pA2);
+// pA2.compareDNA(pA1);
+// pA2.dna = pA2.mutate();
+// pA2.dna = pA2.mutate();
+// pA2.dna = pA2.mutate();
+// pA2.dna = pA2.mutate();
+// pA1.compareDNA(pA2);
+// console.log(`T/F? Specimen ${pA1.specimenNum} is likely to survive? ${ pA1.willLikelySurvive() }`);
+// console.log(`T/F? Specimen ${pA2.specimenNum} is likely to survive? ${ pA2.willLikelySurvive() }`);
