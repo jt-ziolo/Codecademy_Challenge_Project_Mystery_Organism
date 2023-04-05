@@ -1,7 +1,6 @@
 // Returns a random DNA base
-const returnRandBase = () => {
-  const dnaBases = ['A', 'T', 'C', 'G'];
-  return dnaBases[Math.floor(Math.random() * 4)];
+const returnRandBase = (dnaBases = ['A', 'T', 'C', 'G']) => {
+  return dnaBases[Math.floor(Math.random() * dnaBases.length)];
 };
 
 // Returns a random single stand of DNA containing 15 bases
@@ -22,11 +21,11 @@ function pAequorFactory(specimenNum, dna) {
       let elementIdx = Math.floor(Math.random() * dna.length);
       const element = dna[elementIdx];
       // Randomly change the element to a different base than the current
-      let randomBase = element;
-      while(randomBase == element) {
-        randomBase = returnRandBase();
-      }
-      dna[elementIdx] = randomBase;
+      let baseArr = ['A', 'T', 'C', 'G'];
+      baseArr = baseArr.filter(base => {
+        return base != element;
+      });
+      dna[elementIdx] = returnRandBase(baseArr);
       return dna;
     },
   };
@@ -35,11 +34,11 @@ function pAequorFactory(specimenNum, dna) {
 console.log(returnRandBase());
 console.log(mockUpStrand());
 
-console.log(pAequorFactory(1, ['A', 'B']));
-console.log(pAequorFactory(1, ['A', 'B']).mutate());
-console.log(pAequorFactory(1, ['A', 'B']).mutate());
-console.log(pAequorFactory(1, ['A', 'B']).mutate());
-console.log(pAequorFactory(1, ['A', 'B']).mutate());
+console.log(pAequorFactory(1, ['A', 'G']));
+console.log(pAequorFactory(1, ['A', 'G']).mutate());
+console.log(pAequorFactory(1, ['A', 'G']).mutate());
+console.log(pAequorFactory(1, ['A', 'G']).mutate());
+console.log(pAequorFactory(1, ['A', 'G']).mutate());
 
 
 
