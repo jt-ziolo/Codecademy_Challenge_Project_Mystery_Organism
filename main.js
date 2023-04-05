@@ -18,6 +18,16 @@ function pAequorFactory(specimenNum, dna) {
     specimenNum: specimenNum,
     dna: dna,
     mutate() {
+      // Randomly select an element of dna
+      let elementIdx = Math.floor(Math.random() * dna.length);
+      const element = dna[elementIdx];
+      // Randomly change the element to a different base than the current
+      let randomBase = element;
+      while(randomBase == element) {
+        randomBase = returnRandBase();
+      }
+      dna[elementIdx] = randomBase;
+      return dna;
     },
   };
 }
@@ -26,6 +36,10 @@ console.log(returnRandBase());
 console.log(mockUpStrand());
 
 console.log(pAequorFactory(1, ['A', 'B']));
+console.log(pAequorFactory(1, ['A', 'B']).mutate());
+console.log(pAequorFactory(1, ['A', 'B']).mutate());
+console.log(pAequorFactory(1, ['A', 'B']).mutate());
+console.log(pAequorFactory(1, ['A', 'B']).mutate());
 
 
 
